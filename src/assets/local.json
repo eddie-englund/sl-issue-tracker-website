@@ -1,0 +1,58 @@
+{
+  "issues": [
+    {
+      "id": "efb29daa-c279-41c8-a62b-a89aa79b0be6",
+      "description": "Stop buttons working, but signals are not displayed",
+      "created": "2022-08-17, 21:55:20",
+      "vehicle": "buss"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    },
+    {
+      "id": "007fa93d-be46-4a7b-b7c3-5912f7ebe059",
+      "description": "Stop buttons not working at all",
+      "created": "2022-04-12, 12:55:20",
+      "vehicle": "tram"
+    }
+  ]
+}
