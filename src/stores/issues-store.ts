@@ -16,7 +16,6 @@ export const issueStore = defineStore({
   }),
   getters: {
     async getPureIssues(): Promise<Issue[]> {
-      console.log(import.meta.env.DEV, import.meta.env.PROD);
       const res = await axios.get(
         `${import.meta.env.VITE_API_HOST}/issue/get-all`
       );
