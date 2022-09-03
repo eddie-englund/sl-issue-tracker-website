@@ -2,18 +2,24 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { DateTime } from "luxon";
 
+type Vehicle =
+  | "buss"
+  | "train"
+  | "tram"
+  | "buss-station"
+  | "train-station"
+  | "tram-station";
+
 interface Issue {
   id: string;
   description: string;
   created: string;
-  vehicle: "tram" | "buss" | "train";
+  vehicle: Vehicle;
 }
 
 export const issueStore = defineStore({
   id: "issues",
-  state: () => ({
-    issues: [] as Issue[],
-  }),
+  state: () => ({ issues: [] as Issue[] }),
   getters: {
     async getPureIssues(): Promise<Issue[]> {
       const res = await axios.get(
