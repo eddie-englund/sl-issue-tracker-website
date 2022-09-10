@@ -21,24 +21,32 @@ export const issueStore = defineStore({
   id: "issues",
   state: () => ({ issues: [] as Issue[] }),
   getters: {
-    async getPureIssues(): Promise<Issue[]> {
+    async getPureIssues(): Promise<{ issues: Issue[]; created: DateTime }> {
       const res = await axios.get(
         `${import.meta.env.VITE_API_HOST}/issue/get-all`
       );
+
+      const created = DateTime.now();
 
       localStorage.setItem(
         "data",
         JSON.stringify({
           issues: res.data.data,
-          created: DateTime.now(),
+          created,
         })
       );
       this.issues = res.data.data;
-      return res.data.data;
+      return {
+        issues: res.data.data,
+        created,
+      };
     },
     async getIssues(): Promise<Issue[]> {
       const dataStr = localStorage.getItem("data");
-      const data = dataStr ? JSON.parse(dataStr) : await this.getPureIssues;
+      let data;
+
+      if (dataStr) data = JSON.parse(dataStr);
+      else data = await this.getPureIssues;
 
       if (!data && !data.length) {
         throw new Error("Something went wrong fetching the data!");
@@ -49,7 +57,7 @@ export const issueStore = defineStore({
         DateTime.fromISO(data.created).diffNow("minutes").minutes < -1
       ) {
         const newData = await this.getPureIssues;
-        return newData;
+        return newData.issues;
       } else return data.issues;
     },
   },

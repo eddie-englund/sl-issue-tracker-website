@@ -4,6 +4,7 @@ import { issueStore } from "@/stores/issues-store";
 
 const store = issueStore();
 const data = await store.getIssues;
+console.log(data);
 </script>
 
 <template>
