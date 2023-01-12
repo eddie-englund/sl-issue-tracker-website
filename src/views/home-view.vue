@@ -1,32 +1,36 @@
-<script lang="ts" setup>
-import Issue from "../components/issue-component.vue";
-import { issueStore } from "@/stores/issues-store";
+<script setup lang="ts">
+import { getIssues } from '@/api';
+import { useIssueStore } from '@/stores/issue-store';
+import { isRight, isLeft } from 'fp-ts/lib/Either';
+import { onMounted } from 'vue';
+import toastComponent from '@/components/toast-component.vue';
 
-const store = issueStore();
-const data = await store.getIssues;
-console.log(data);
+const store = useIssueStore();
+onMounted(async () => {
+  store.issues = await getIssues();
+});
 </script>
 
 <template>
   <main>
-    <div class="issues-container">
-      <Issue
-        v-for="issue in data"
-        :key="issue.id"
-        :id="issue.id"
-        :veichle="issue.vehicle"
-        :created="issue.created"
-        :description="issue.description"
-      />
+    <div v-if="isRight(store.issues)">
+      {{ store.issues.right }}
+    </div>
+    <toast-component
+      class="toast"
+      v-else-if="isLeft(store.issues)"
+      :msg="store.issues.left[0]"
+    />
+    <div v-else>
+      <p>Something went so wrong that you should contact us ASAP!</p>
     </div>
   </main>
 </template>
 
 <style lang="scss" scoped>
-.issues-container {
-  margin: 1rem;
-  .issue-wrapper:not(:first-child) {
-    margin-top: 3%;
-  }
+.toast {
+  position: absolute;
+  right: 5rem;
+  bottom: 10rem;
 }
 </style>

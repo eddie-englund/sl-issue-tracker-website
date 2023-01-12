@@ -1,18 +1,7 @@
-$bg: #0F151D;
-$card-bg: #232F41;
+$bg: #04090F;
+$error: #FE8181;
+$card: #191E22;
 
-// Text
 $text: #f8f8f8;
-$text-muted: #C1C1C1;
-
-// Set defaults
-
-a, h1, h2, h3, p {
-  color: $text;
-  transition: .3s ease;
-  text-decoration: none;
-}
-
-a:hover {
-  color: $text-muted;
-}
+$text-secondary: #B7BEC7;
+$text-muted: #898989;

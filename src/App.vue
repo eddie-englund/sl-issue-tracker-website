@@ -1,54 +1,56 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">SL issue tracker</RouterLink>
-        <p>
-          Stockholms Lokaltrafik has constant issues, so here is a list I update
-          whenever I find issues with the service.
-        </p>
-      </nav>
-    </div>
+    <h3>SL ISSUE TRACKER</h3>
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+    </nav>
   </header>
-
-  <Suspense>
-    <template #default><RouterView /></template>
-    <template #fallback><h1>...loading</h1></template>
-  </Suspense>
+  <RouterView class="router-view" />
+  <p class="notice">
+    Note that this website is in no way shape or form
+    <br />affiliated with Stockholms Lokaltrafik (SL)
+  </p>
 </template>
 
 <style lang="scss">
-@use "@scss/var.scss" as f;
+@use '@/scss/colors' as c;
+@use '@/scss/fonts' as f;
 
-#app {
-  margin-top: 2%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+body,
+body::before,
+body::after {
+  margin: 0;
+  padding: 0;
 }
 
-nav {
-  min-height: 6rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
+body {
+  background-color: c.$bg;
+}
 
-  a {
-    font-size: f.$header3;
-    font-weight: 700;
-  }
+header {
+  text-align: center;
+  margin-top: 2%;
 
-  p {
-    width: 60%;
-    text-align: center;
+  nav {
+    display: flex;
+    gap: 4.2rem;
+    justify-content: center;
   }
+}
+
+.notice {
+  text-align: center;
+  @include f.extra-light;
+  color: c.$text-muted;
+}
+
+.router-view {
+  margin-top: 5%;
+  min-height: 60vh;
 }
 </style>
