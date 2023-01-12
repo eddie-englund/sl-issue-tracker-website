@@ -3,7 +3,8 @@ import { getIssues } from '@/api';
 import { useIssueStore } from '@/stores/issue-store';
 import { isRight, isLeft } from 'fp-ts/lib/Either';
 import { onMounted } from 'vue';
-import toastComponent from '@/components/toast-component.vue';
+import ErrorComponent from '@/components/error-component.vue';
+import cardComponent from '@/components/card-component.vue';
 
 const store = useIssueStore();
 onMounted(async () => {
@@ -13,10 +14,16 @@ onMounted(async () => {
 
 <template>
   <main>
-    <div v-if="isRight(store.issues)">
-      {{ store.issues.right }}
+    <div class="cards-container" v-if="isRight(store.issues)">
+      <card-component
+        v-for="issue in store.issues.right.data"
+        :key="issue.id"
+        :vehicle="issue.vehicle"
+        :description="issue.description"
+        :created-at="issue.created"
+      />
     </div>
-    <toast-component
+    <error-component
       class="toast"
       v-else-if="isLeft(store.issues)"
       :msg="store.issues.left[0]"
@@ -28,9 +35,19 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
+main {
+  min-width: 100%;
+}
+
 .toast {
-  position: absolute;
-  right: 5rem;
-  bottom: 10rem;
+  margin: 0 auto;
+}
+
+.cards-container {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 </style>

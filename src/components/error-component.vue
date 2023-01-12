@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 defineProps({
   msg: String,
+  error: { type: String },
 });
-
-const emit = defineEmits(['close']);
 </script>
 
 <template>
@@ -11,22 +10,26 @@ const emit = defineEmits(['close']);
     <div class="indicator" aria-hidden="true"></div>
     <div class="inner-container">
       <div class="text-container">
-        <p class="text-error">Error</p>
+        <h3 class="text-error">Error</h3>
         <p class="text-msg">{{ msg }}</p>
+        <p class="text-msg text-info">
+          Reload the website and if the error persists, please contact the owner
+          of the site
+        </p>
       </div>
-      <button class="close-btn" @click.prevent="emit('close')">
-        <p>CLOSE</p>
-      </button>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @use '@/scss/colors.scss' as c;
+@use '@/scss/fonts.scss' as f;
+
 .toast-container {
   background: c.$card;
-  max-width: 24rem;
+  max-width: 30rem;
   min-width: 24rem;
+  min-height: 8rem;
   display: flex;
   border-radius: 4px;
 
@@ -42,6 +45,7 @@ const emit = defineEmits(['close']);
   }
 
   .text-msg,
+  .text-error-msg,
   .text-error {
     margin: 0;
     padding: 0;
@@ -52,12 +56,15 @@ const emit = defineEmits(['close']);
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
-
-  .text-msg,
-  .close-btn p {
+  .text-msg {
     color: c.$text-muted;
     margin: 0;
     padding: 0;
+  }
+
+  .text-info {
+    @include f.extra-light;
+    margin-top: 5%;
   }
 
   .close-btn {

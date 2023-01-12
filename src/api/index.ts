@@ -6,6 +6,7 @@ import { z } from 'zod';
 
 export const Vehicles = z.enum([
   'bus',
+  'buss', // TODO: remove once back-end is fixed
   'tram',
   'buss-station',
   'train-station',
@@ -19,7 +20,10 @@ export const Schema = z.object({
       id: z.string().uuid().trim(),
       created: z.string().transform(d => new Date(d)),
       description: z.string().min(1).max(256),
-      vehicle: Vehicles,
+      vehicle: Vehicles.transform(e => {
+        if (e === 'buss') return 'bus'; // TODO: remove once BE is fixed
+        else return e;
+      }),
     }),
   ),
 });
