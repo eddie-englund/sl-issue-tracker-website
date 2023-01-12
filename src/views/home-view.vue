@@ -23,11 +23,9 @@ onMounted(async () => {
         :created-at="issue.created"
       />
     </div>
-    <error-component
-      class="toast"
-      v-else-if="isLeft(store.issues)"
-      :msg="store.issues.left[0]"
-    />
+    <div class="error-container" v-else-if="isLeft(store.issues)">
+      <error-component class="toast" :msg="store.issues.left[0]" />
+    </div>
     <div v-else>
       <p>Something went so wrong that you should contact us ASAP!</p>
     </div>
@@ -39,8 +37,17 @@ main {
   min-width: 100%;
 }
 
-.toast {
-  margin: 0 auto;
+.error-container {
+  .toast {
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .error-container {
+    margin: 1rem;
+    max-width: 80vw;
+  }
 }
 
 .cards-container {

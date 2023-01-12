@@ -27,9 +27,8 @@ defineProps({
 
 .toast-container {
   background: c.$card;
-  max-width: 30rem;
-  min-width: 24rem;
-  min-height: 8rem;
+  max-width: 80vw;
+  min-width: 22rem;
   display: flex;
   border-radius: 4px;
 
@@ -65,6 +64,7 @@ defineProps({
   .text-info {
     @include f.extra-light;
     margin-top: 5%;
+    max-width: 90%;
   }
 
   .close-btn {
@@ -83,6 +83,12 @@ defineProps({
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .toast-container {
+    max-width: 40rem;
   }
 }
 </style>
