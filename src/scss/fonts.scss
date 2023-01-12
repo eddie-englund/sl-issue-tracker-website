@@ -1,0 +1,50 @@
+@use './colors.scss' as c;
+
+body, h1, h2, h3, h4, p, a {
+  font-family: 'Poppins', sans-serif;
+  color: c.$text;
+}
+
+@mixin extra-light {
+  font-weight: 200;
+}
+
+@mixin light {
+  font-weight: 300;
+}
+
+@mixin extra-light {
+  font-weight: 200;
+}
+
+
+@mixin regular {
+  font-weight: 400;
+}
+
+@mixin medium {
+  font-weight: 500;
+}
+
+@mixin semi-bold {
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  @include medium
+}
+
+a, p {
+  @include regular;
+}
+
+a {
+  text-decoration: none;
+  transition: all .3s ease;
+  color: c.$text-secondary;
+}
+
+a:hover, a.router-link-exact-active{
+  text-decoration: underline;
+  color: c.$text;
+}
