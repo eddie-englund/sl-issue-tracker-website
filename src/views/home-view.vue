@@ -26,9 +26,6 @@ onMounted(async () => {
     <div class="error-container" v-else-if="isLeft(store.issues)">
       <error-component class="toast" :msg="store.issues.left[0]" />
     </div>
-    <div v-else>
-      <p>Something went so wrong that you should contact us ASAP!</p>
-    </div>
   </main>
 </template>
 
